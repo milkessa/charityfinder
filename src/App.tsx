@@ -1,23 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './pages/Navbar';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import Layout from './layout';
+import Homepage from './pages/homepage';
+import Fav from './pages/favorite';
+import CharityCause from './pages/charityCause';
+import CharityDetail from './pages/charityDetail';
 
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Homepage />
         <Routes>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          {/* Add a default route or 404 page if necessary */}
-        </Routes>
+      <Route path="/" element={<Layout/>}>
+        <Route index element={<Homepage/>}/>
+        <Route path="/favorites" element={<Fav/>}/>
+        <Route path="/search/:causes" element={<CharityCause/>}/>
+        <Route path="/charity/:id" element={<CharityDetail/>}/>
+      </Route>  
+      </Routes>
       </div>
     </Router>
   );
