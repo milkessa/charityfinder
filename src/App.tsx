@@ -1,27 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Layout from './layout';
-import Homepage from './pages/homepage';
-import Fav from './pages/favorite';
-import CharityCause from './pages/charityCause';
-import CharityDetail from './pages/charityDetail';
+import React from 'react'
+import Navbar from './components/navbar/navbar'
+import Header from './components/header/header'
+import Charity from './components/charityFind/charity'
+import Footer from './components/footer/footer'
 
-const App: React.FC = () => {
+const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Homepage />
-        <Routes>
-      <Route path="/" element={<Layout/>}>
-        <Route index element={<Homepage/>}/>
-        <Route path="/favorites" element={<Fav/>}/>
-        <Route path="/search/:causes" element={<CharityCause/>}/>
-        <Route path="/charity/:id" element={<CharityDetail/>}/>
-      </Route>  
-      </Routes>
-      </div>
-    </Router>
-  );
-};
+    <div>
+      <Navbar/>
+      <Header/>
+      <Charity/>
+      <Footer/>
+    </div>
+  )
+}
 
-export default App;
+export default App
