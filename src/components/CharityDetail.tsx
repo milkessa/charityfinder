@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { CharityDetails, CharityDetailsResponse } from "../types/types";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Button,
+} from "@material-tailwind/react";
 
 export const CharityDetail = () => {
     const [results, setSearchResults] = useState<CharityDetails>();
@@ -55,21 +62,25 @@ export const CharityDetail = () => {
       }
     return (<>
             {( results === undefined ? <div> Charity not found </div> :
-            <div className="flex">                
-                <div className="flow-left w-4/5 pt-2">
+            <div className="container mt-32 mx-auto p-4 md:p-0">                
+                <div className="shadow-lg flex flex-wrap w-full lg:w-4/5 mx-auto">
                     <img className="object-cover h-48 w-96" src={results.coverImageUrl}/>
                     { (results.logoUrl !== undefined && results.logoUrl !== '' ?
                         <img src={results.logoUrl}></img> : 
                         <img src="../GenericIcon.png" width="48" height="48"/> )}
-                    <h1>{results.name}</h1>
-                    <h2>{results.location}</h2>
-                    <p> {results.description}</p> <br/>
-                    <p className="text-sm"> {results.descriptionLong}</p>
+                    <h1 className="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">{results.name}</h1>
+                    <h2 className="mb-0 mt-3 text-grey-dark text-sm italic">{results.location}</h2>
+                    <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm"> {results.description}</p> <br/>
+                    <p className="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm"> {results.descriptionLong}</p>
                 </div>
                 <div className="flow-right w-auto pt-10">
-                    <button onClick={onClickFavorite}> {isFavorite ? "Remove from Favorites" : "Add to Favorite"}</button>
+                    <button className="bg-white hover:bg-grey-darker hover:text-white border border-solid border-grey w-1/3 lg:w-full py-2" onClick={onClickFavorite}> {isFavorite ? "Remove from Favorites" : "Add to Favorite"}</button>
                 </div>
-          </div>)}
+          </div>
+          
+          
+          )}
+          
           </>);
   };
   
